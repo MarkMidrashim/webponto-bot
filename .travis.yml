@@ -3,8 +3,8 @@ before_install:
     - cd ./
     - echo "We are in the folder"
 script:
-    - pip3 install -r requirements.txt 
-    - python3.7 main.py
+    - pip install -r requirements.txt 
+    - python main.py
 deploy:
     provider: script
     on:
