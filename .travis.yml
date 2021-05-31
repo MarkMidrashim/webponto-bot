@@ -1,13 +1,13 @@
-language: bash
-before_install:
-    - cd ./
-    - echo "We are in the folder"
+language: python
+python:
+  - "2.7"
+  - "3.7"
+virtualenv:
+  system_site_packages: true
+install:
+  - pip install -r requirements.txt
 script:
-    - pip install -r requirements.txt 
-    - python main.py
-deploy:
-    provider: script
-    on:
-        branch: main
+  - pytest
+  - python main.py
 notifications:
     email: false
