@@ -1,0 +1,12 @@
+language: bash
+before_install:
+    - cd ./
+    - echo "We are in the folder"
+script:
+    - install -r requirements.txt && python main.py
+deploy:
+    provider: script
+    on:
+        branch: main
+notifications:
+    email: false
