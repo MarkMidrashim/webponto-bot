@@ -2,3 +2,4 @@ selenium==3.141.0
 webdriver_manager==2.5.2
 python-dotenv
 tinydb
+cx_Freeze

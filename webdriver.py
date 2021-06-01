@@ -51,12 +51,14 @@ class WebDriver:
 			shell=True
 		).decode('utf-8').strip()
 
-		if "90." in version:
-			driver = "./drivers/chromedriver90"
-		elif "91." in version:
-			driver = "./drivers/chromedriver91"
-
-		return driver
+		try:
+			if self.env.get("BROWSER_VERSION") in version:
+				driver = "./drivers/chromedriver"
+		except Exception as e:
+			print("-- INCOMPATIBLE BROWSER VERSION --")
+			print(e)
+		else:
+			return driver
 
 	def open(self):
 		"""
