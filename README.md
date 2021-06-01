@@ -1,10 +1,6 @@
 WebPonto BOT
 ============
 
-[![Build Status](https://img.shields.io/badge/build-success-green.svg)](https://travis-ci.org/)
-[![Version](https://img.shields.io/badge/version-1.0.0-orange.svg)](https://travis-ci.org/)
-[![License](https://img.shields.io/badge/license-MIT-red.svg)](https://travis-ci.org/)
-
 ### Intuíto:
 Realizar apontamento automático de horário no portal NORBER.
 
@@ -18,5 +14,14 @@ $ python main.py
 
 Quando o horário for o de realizar a marcação, o BOT, após apontar a marcação, fará um banco de dados em JSON para manter o histórico de marcações.
 
-### Sistemas Operacionais
+### Necessário
+
+> Sistema Operacional
+
 O BOT desenvolvido foi projetado para executar sobre o Windows.
+
+> Drivers do Browser
+
+É necessário realizar o download das versões 91 e/ou 90 do Chrome e colocar no diretório `./drivers` do projeto.
+Basta [clicar aqui](https://chromedriver.chromium.org/downloads) para acessar o webdriver.
+Então renomeie o .exe da seguinte forma: chromedriver90.exe
