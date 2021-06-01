@@ -22,6 +22,5 @@ O BOT desenvolvido foi projetado para executar sobre o Windows.
 
 > Drivers do Browser
 
-É necessário realizar o download das versões 91 e/ou 90 do Chrome e colocar no diretório `./drivers` do projeto.
+É necessário realizar o download da versão compatível com seu navegador Chrome e colocar no diretório `./drivers` do projeto.
 Basta [clicar aqui](https://chromedriver.chromium.org/downloads) para acessar o webdriver.
-Então renomeie o .exe da seguinte forma: chromedriver90.exe
