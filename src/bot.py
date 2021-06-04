@@ -20,11 +20,7 @@ class Bot:
         self.viewBrowser = viewBrowser
         self.datetime = datetime
         self.commons = Commons()
-        self.db = Database(self.datetime)
-        self.connectionWithDatabase = None
-
-    def __enter__(self):
-        self.connectionWithDatabase = self.db.open()
+        self.connectionWithDatabase = Database(datetime).open()
 
     def start(self):
         """

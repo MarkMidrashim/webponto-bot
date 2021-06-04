@@ -39,6 +39,14 @@ $ python starter.py
 
 Quando o horário for o de realizar a marcação, o BOT, após apontar a marcação, fará um banco de dados em JSON para manter o histórico de marcações.
 
+Para ver o log de execução, basta executar o seguinte comando:
+
+```Bash
+$ Get-Content -Path ".\log\<data do log>.log" -Wait
+```
+
+Para ver o BOT executando a ação de marcação, basta alterar no seu arquivo `.env` a propriedade **VIEW_BROWSER** para True.
+
 ### Estrutura
 No download, você encontrará os seguintes diretórios e arquivos:
 
