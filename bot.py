@@ -3,6 +3,8 @@
 
 from webdriver import WebDriver
 from tinydb import TinyDB, Query
+from commons import Commons
+from database import Database
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
@@ -10,14 +12,20 @@ from selenium.webdriver.common.action_chains import ActionChains
 from dotenv import dotenv_values
 import time
 
+
 class Bot:
     """Actions e methods para realizar o propósito do BOT"""
 
     def __init__(self, viewBrowser, datetime):
         self.env = dotenv_values(".env")
-        self.db = TinyDB(self.env.get("PATH_AND_DBNAME"))
         self.viewBrowser = viewBrowser
         self.datetime = datetime
+        self.commons = Commons()
+        self.db = Database(self.datetime)
+        self.connectionWithDatabase = None
+
+    def __enter__(self):
+        self.connectionWithDatabase = self.db.open()
 
     def start(self):
         """
@@ -43,8 +51,7 @@ class Bot:
             self.driver.get(self.env.get("URL"))
             self.driver.implicitly_wait(5)
         except Exception as e:
-            print("-- ERROR --")
-            print("{}".format(e))
+            self.commons.logg(e, 3)
             return None
 
         time.sleep(1)
@@ -106,10 +113,11 @@ class Bot:
         try:
             self.driver.find_element(By.CLASS_NAME, 'BotaoAchatado').click()
             data = {"date": self.datetime.strftime("%d/%m/%Y %H:%M"), "set": True}
-            self.db.insert(data)
+            self.connectionWithDatabase.insert(data)
         except Exception as e:
+            self.commons.logg(e, 3)
             data = {"date": self.datetime.strftime("%d/%m/%Y %H:%M"), "set": False}
-            self.db.data(dictionary=data)
+            self.connectionWithDatabase.data(dictionary=data)
 
     def closeMarkingWindow(self):
         """
@@ -121,6 +129,7 @@ class Bot:
             self.driver.find_element(By.CSS_SELECTOR, 'button[value*=Fechar]').click()
             self.driver.close()
         except Exception as e:
+            self.commons.logg(e, 3)
             self.driver.close()
 
     def switchWindowBetweenMainAndMarking(self, whichWindow):

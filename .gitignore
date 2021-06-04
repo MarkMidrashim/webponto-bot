@@ -43,8 +43,6 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
-*.log
-
 # Flask stuff:
 instance/
 .webassets-cache
@@ -81,9 +79,10 @@ celerybeat-schedule
 venv/
 
 # Database
-db.json
+/database/*.json
 
-*.spec
+# Log
+/log/*.log
 
 # Drivers
 /drivers/*.exe

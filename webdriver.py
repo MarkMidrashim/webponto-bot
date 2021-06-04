@@ -3,9 +3,11 @@
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from commons import Commons
 
 import subprocess
 from dotenv import dotenv_values
+
 
 class WebDriver:
 	"""Configuração do WebDriver para utilização no Selenium com BOT"""
@@ -14,6 +16,7 @@ class WebDriver:
 		self.env = dotenv_values(".env")
 		self.pathDownload = self.env.get("PATH_DOWNLOAD")
 		self.headless = headless
+		self.commons = Commons()
 
 	def setOptions(self):
 		"""
@@ -55,8 +58,7 @@ class WebDriver:
 			if self.env.get("BROWSER_VERSION") in version:
 				driver = "./drivers/chromedriver"
 		except Exception as e:
-			print("-- INCOMPATIBLE BROWSER VERSION --")
-			print(e)
+			self.commons.logg(e, 3)
 		else:
 			return driver
 
