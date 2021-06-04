@@ -1,23 +1,22 @@
 #!-*- conding: utf8 -*-
 #coding: utf-8
 
-from webdriver import WebDriver
-from tinydb import TinyDB, Query
-from commons import Commons
-from database import Database
+from src.commons import Commons
+from src.database import Database
+from src.webdriver import WebDriver
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 
 from dotenv import dotenv_values
-import time
+import time, os
 
 
 class Bot:
     """Actions e methods para realizar o propósito do BOT"""
 
     def __init__(self, viewBrowser, datetime):
-        self.env = dotenv_values(".env")
+        self.env = dotenv_values("{}\\.env".format(os.path.abspath(os.getcwd())))
         self.viewBrowser = viewBrowser
         self.datetime = datetime
         self.commons = Commons()

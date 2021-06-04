@@ -1,16 +1,18 @@
 #!-*- conding: utf8 -*-
 # coding: utf-8
 
+from src.commons import Commons
+
 from tinydb import TinyDB
-from commons import Commons
 from dotenv import dotenv_values
+import os
 
 
 class Database:
     """Classe responsável por gerenciar o Database"""
 
     def __init__(self, currenttimestamp):
-        self.env = dotenv_values(".env")
+        self.env = dotenv_values("{}\\.env".format(os.path.abspath(os.getcwd())))
         self.commons = Commons()
         self.currenttimestamp = currenttimestamp
 

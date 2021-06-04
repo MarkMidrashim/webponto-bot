@@ -4,18 +4,19 @@
 from dotenv import dotenv_values
 from datetime import datetime
 
-import os, time, argparse, sys
+import os
 
 
 class Commons(object):
 	"""Métodos comuns para o BOT"""
 
 	def __init__(self):
-		self.env = dotenv_values(".env")
+		self.env = dotenv_values("{}\\.env".format(os.path.abspath(os.getcwd())))
 
 	def isEmpty(self, value):
 		"""
 		Método responsável por verificar se a variável está vazia
+		:param value:
 		:return:
 		"""
 		if value:
@@ -26,7 +27,7 @@ class Commons(object):
 	def logTypeToString(self, logType=0):
 		"""
 		Método responsável por verificar o tipo de log
-		:param type:
+		:param logType:
 		:return:
 		"""
 		if logType == 0:
@@ -45,19 +46,20 @@ class Commons(object):
 		"""
 		Método responsável por gerar log de execução
 		:param message:
+		:param logType:
 		:return:
 		"""
 		currenttimestamp = datetime.now()
 
 		try:
-			f = open("{}\\{}.log".format(self.env.get("PATH_LOG"), currenttimestamp.strftime("%d%m%Y")) , "a")
-			f.write("[{0}] {1} - {2}".format(
+			file = open("{}\\{}.log".format(self.env.get("PATH_LOG"), currenttimestamp.strftime("%d%m%Y")), "a")
+			file.write("[{0}] {1} - {2}\n".format(
 				currenttimestamp.strftime("%d/%m/%Y %H:%M"),
 				self.logTypeToString(logType),
 				message
 			))
 		except IOError as e:
-			print("-- ERROR --")
+			print("-- Log Error --")
 			print(e)
 		finally:
-			f.close()
+			file.close()

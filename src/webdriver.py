@@ -1,19 +1,20 @@
 #!-*- conding: utf8 -*-
 #coding: utf-8
 
+from src.commons import Commons
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from commons import Commons
 
-import subprocess
 from dotenv import dotenv_values
+import subprocess, os
 
 
 class WebDriver:
 	"""Configuração do WebDriver para utilização no Selenium com BOT"""
 
 	def __init__(self, headless=True):
-		self.env = dotenv_values(".env")
+		self.env = dotenv_values("{}\\.env".format(os.path.abspath(os.getcwd())))
 		self.pathDownload = self.env.get("PATH_DOWNLOAD")
 		self.headless = headless
 		self.commons = Commons()

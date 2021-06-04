@@ -1,20 +1,20 @@
 #!-*- conding: utf8 -*-
 #coding: utf-8
 
-from bot import Bot
-from commons import Commons
+from src.bot import Bot
+from src.commons import Commons
 from tinydb import Query
 
 from dotenv import dotenv_values
 from datetime import datetime
-import time, sys
+import time, sys, os
 
 
 class Main(Bot):
 	""" Lógica para execução do BOT """
 
 	def __init__(self):
-		self.env = dotenv_values(".env")
+		self.env = dotenv_values("{}\\.env".format(os.path.abspath(os.getcwd())))
 		self.viewBrowser = self.env.get("VIEW_BROWSER")
 		self.commons = Commons()
 
@@ -29,8 +29,10 @@ class Main(Bot):
 
 			if 0 <= currenttimestamp.isoweekday() <= 5:
 				if bot.checkIfItsTimeToMarking():
-					Marking = Query()
-					result = bot.connectionWithDatabase.search(Marking.date == currenttimestamp.strftime("%d/%m/%Y %H:%M"))
+					marking = Query()
+					result = bot.connectionWithDatabase.search(
+						marking.date == currenttimestamp.strftime("%d/%m/%Y %H:%M")
+					)
 
 					if len(result) == 0:
 						self.commons.logg("INIT BOT")
@@ -50,7 +52,11 @@ class Main(Bot):
 
 						self.commons.logg("FINISHED BOT")
 					else:
-						self.commons.logg("An appointment has already been made at this time {}".format(currenttimestamp.strftime("%H:%M")))
+						self.commons.logg(
+							"An appointment has already been made at this time {}".format(
+								currenttimestamp.strftime("%H:%M")
+							)
+						)
 						time.sleep(30)
 				else:
 					self.commons.logg("It is not time {}".format(currenttimestamp.strftime("%H:%M")))
@@ -58,12 +64,3 @@ class Main(Bot):
 			else:
 				self.commons.logg("It is not week day".format(currenttimestamp.strftime("%H:%M")))
 				sys.out()
-
-
-if __name__ == '__main__':
-	try:
-		main = Main()
-		main.start()
-	except Exception as e:
-		print("-- Main Error --")
-		print(e)

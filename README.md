@@ -1,26 +1,60 @@
-WebPonto BOT
-============
+# WebPonto BOT
+
+## Índice
+* [Intuíto](#intuito)
+* [Notas Importante](#notas-importantes)
+* [Execução](#execucao)
+* [Estrutura](#estrutura)
 
 ### Intuíto:
-Realizar apontamento automático de horário no portal NORBER.
+Realizar apontamento automático de horário no portal **NORBER**.
+
+### Notas Importantes
+
+> Sistemas Operacionais
+
+O BOT desenvolvido foi executado, somente, sobre o **Windows**.
+
+<br/>
+
+> Drivers do Browser
+
+É necessário ter o webdriver com versão compatível a do seu navegador Google Chrome e, colocar no diretório `./drivers`.
+Para realizar o download, basta acessar o [Chrome Driver](https://chromedriver.chromium.org/downloads).
+
+<br/>
+
+> Ambiente
+
+É necessário configurar o arquivo `.env` e configurar informações importantes para que o BOT execute os apontamentos com sucesso.
+
 
 ### Execução
 Para executar o projeto é necessário renomear o arquivo `.env.example` para `.env` e preencher o arquivo com as informações necessárias.
 Depois, basta executar o seguinte comando:
 
 ```Bash
-$ python main.py
+$ python starter.py
 ```
 
 Quando o horário for o de realizar a marcação, o BOT, após apontar a marcação, fará um banco de dados em JSON para manter o histórico de marcações.
 
-### Necessário
+### Estrutura
+No download, você encontrará os seguintes diretórios e arquivos:
 
-> Sistema Operacional
-
-O BOT desenvolvido foi projetado para executar sobre o Windows.
-
-> Drivers do Browser
-
-É necessário realizar o download da versão compatível com seu navegador Chrome e colocar no diretório `./drivers` do projeto.
-Basta [clicar aqui](https://chromedriver.chromium.org/downloads) para acessar o webdriver.
+```
+webponto-bot
+    ├── src
+    │ ├── bot.py
+    │ ├── commons.py
+    │ ├── database.py
+    │ ├── main.py
+    │ ├── webdriver.py
+    ├── database
+    ├── log
+    ├── drivers
+    ├── starter.py
+    ├── .env.example
+    ├── requirements.txt
+    ├── README.md
+```
