@@ -1,5 +1,7 @@
 # WebPonto BOT
 
+> Python 3.7+
+
 ## Índice
 * [Intuíto](#intuito)
 * [Notas Importante](#notas-importantes)
@@ -31,6 +33,11 @@ Para realizar o download, basta acessar o [Chrome Driver](https://chromedriver.c
 
 ### Execução
 Para executar o projeto é necessário renomear o arquivo `.env.example` para `.env` e preencher o arquivo com as informações necessárias.
+E então, instale as dependências do projeto executando:
+```Bash
+$ pip install -r ./requirements.txt
+```
+
 Depois, basta executar o seguinte comando:
 
 ```Bash
