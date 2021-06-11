@@ -120,8 +120,8 @@ class Bot:
         :return:
         """
         try:
-            time.sleep(5)
-            self.driver.find_element(By.CSS_SELECTOR, 'button[value*=Fechar]').click()
+            time.sleep(10)
+            self.driver.find_element(By.CSS_SELECTOR, 'button[name="Submit22"][value*="Fechar"]').click()
             self.driver.close()
         except Exception as e:
             self.commons.logg(e, 3)
